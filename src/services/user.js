@@ -1,4 +1,7 @@
 import { createUser, findUserByEmail } from "../repositories/user.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../config/serverConfig.js";
 
 export const signUpService = async (userObject) => {
   try {
@@ -16,9 +19,9 @@ export const signUpService = async (userObject) => {
   }
 };
 
-export const signInService = async (userObject) => {
+export const signInService = async (userDetails) => {
   try {
-    const user = await findUserByEmail(userObject.email);
+    const user = await findUserByEmail(userDetails.email);
     if (!user) {
       throw {
         status: 404,
@@ -26,13 +29,30 @@ export const signInService = async (userObject) => {
       };
     }
 
-    if (!user.email || !user.password) {
+    const isPasswordValid = await bcrypt.compareSync(
+      userDetails.password,
+      user.password
+    );
+    if (!isPasswordValid) {
       throw {
-        status: 400,
-        message: "Email and Password are required",
+        status: 401,
+        message: "Invalid Password",
       };
     }
-    return user;
+
+    const token = jwt.sign(
+      {
+        _id: user._id,
+        email: user.email,
+        username: user.username,
+      },
+      JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+    return {
+      user,
+      token,
+    };
   } catch (error) {
     console.log("Error in SignIn Service", error);
     throw error;

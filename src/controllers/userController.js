@@ -1,3 +1,4 @@
+import { token } from "morgan";
 import { signInService, signUpService } from "../services/user.js";
 
 export const signUpController = async (req, res) => {
