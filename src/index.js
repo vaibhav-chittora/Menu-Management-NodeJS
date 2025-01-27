@@ -4,6 +4,9 @@ import apiRouter from "./routes/apiRouter.js";
 import connectDB from "./config/dbConfig.js";
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/api/v1", apiRouter);
 
 app.get("/", (req, res) => {
