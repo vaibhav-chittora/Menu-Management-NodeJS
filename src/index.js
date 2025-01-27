@@ -1,6 +1,7 @@
 import express from "express";
 import { PORT } from "./config/serverConfig.js";
 import apiRouter from "./routes/apiRouter.js";
+import connectDB from "./config/dbConfig.js";
 const app = express();
 
 app.use("/api/v1", apiRouter);
@@ -11,4 +12,5 @@ app.get("/", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  connectDB();
 });
