@@ -12,25 +12,12 @@ import {
 // Create item controller
 export const createItemController = async (req, res) => {
   try {
-    const {
-      subCategoryId,
-      name,
-      description,
-      image,
-      taxApplicable,
-      tax,
-      baseAmount,
-      discount,
-    } = req.body;
+    const { subCategory, name, baseAmount, totalAmount } = req.body;
     const item = await createItemService(
-      subCategoryId,
+      subCategory,
       name,
-      description,
-      image,
-      taxApplicable,
-      tax,
       baseAmount,
-      discount
+      totalAmount
     );
     return res.status(201).json({
       success: true,

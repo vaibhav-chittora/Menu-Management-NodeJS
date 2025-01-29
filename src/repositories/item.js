@@ -1,26 +1,13 @@
 import Item from "../schema/item.js";
 
 // Create an item
-export async function createItem(
-  subCategoryId,
-  name,
-  description,
-  image,
-  taxApplicable,
-  tax,
-  baseAmount,
-  discount
-) {
+export async function createItem(subCategory, name, baseAmount, totalAmount) {
   try {
     const item = new Item({
+      subCategory,
       name,
-      description,
-      image,
-      taxApplicable,
-      tax,
       baseAmount,
-      discount,
-      subCategory: subCategoryId,
+      totalAmount,
     });
     await item.save();
     return item;

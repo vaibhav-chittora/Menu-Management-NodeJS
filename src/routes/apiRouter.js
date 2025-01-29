@@ -15,6 +15,6 @@ router.use("/category", categoryRouter);
 
 router.use("/category", SubCategory);
 
-router.use("/items", itemRouter);
+router.use("/category/item", itemRouter);
 
 export default router;

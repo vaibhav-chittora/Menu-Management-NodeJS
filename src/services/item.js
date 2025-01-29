@@ -11,25 +11,17 @@ import {
 
 // Create item service
 export const createItemService = async (
-  subCategoryId,
+  subCategory,
   name,
-  description,
-  image,
-  taxApplicable,
-  tax,
   baseAmount,
-  discount
+  totalAmount
 ) => {
   try {
     const newItem = await createItem(
-      subCategoryId,
+      subCategory,
       name,
-      description,
-      image,
-      taxApplicable,
-      tax,
       baseAmount,
-      discount
+      totalAmount
     );
     return newItem;
   } catch (error) {
