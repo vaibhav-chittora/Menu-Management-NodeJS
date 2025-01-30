@@ -29,7 +29,7 @@ export const signInService = async (userDetails) => {
       };
     }
 
-    const isPasswordValid = await bcrypt.compareSync(
+    const isPasswordValid = bcrypt.compareSync(
       userDetails.password,
       user.password
     );

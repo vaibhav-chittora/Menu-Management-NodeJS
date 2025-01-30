@@ -2,6 +2,44 @@
 
 A robust REST API for managing restaurant menus with users, categories, subcategories, and items.
 
+## Setup Instructions
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/vaibhav-chittora/Menu-Management-NodeJS.git
+
+```
+
+2. Install dependencies
+
+```bash
+cd Menu-Management-NodeJS
+npm install
+
+```
+
+3.Create .env file in root directory with following variables:
+
+```bash
+PORT=3000
+DB_URL=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+```
+
+4. Start the server
+
+```bash
+npm start
+```
+
+5. Server will run on port 3000
+
+```bash
+ http://localhost:3000
+
+```
+
 ## API Endpoints
 
 ### Authentication
@@ -56,9 +94,9 @@ A robust REST API for managing restaurant menus with users, categories, subcateg
 
 ```json
 {
-  "username": "username",
-  "email": "user@example.com",
-  "password": "password123"
+  "username": "vaibhav",
+  "email": "vaibhav@admin.com",
+  "password": "abc0900"
 }
 ```
 
